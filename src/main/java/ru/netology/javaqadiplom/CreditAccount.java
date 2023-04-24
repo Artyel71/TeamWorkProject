@@ -23,6 +23,7 @@ public class CreditAccount extends Account {
                     "Накопительная ставка не может быть отрицательной, а у вас: " + rate
             );
         }
+
         this.balance = initialBalance;
         this.creditLimit = creditLimit;
         this.rate = rate;
