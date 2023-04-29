@@ -28,27 +28,29 @@ public class SavingAccountTest {
                 5
         );
 
-        account.add(9_000);
+        account.add(9000);
 
-        Assertions.assertEquals(false, account.getBalance());
+        Assertions.assertEquals(2000, account.getBalance());
+
     }
 
-
-
     @Test
-    public void shouldNotAllowMinBalanceAboveMaxBalance() {//минимальный баланс не может быть больше максимального
+    public void shouldThrowExceptionMinBalanceAboveMaxBalance() {//минимальный баланс не может быть больше максимального
         SavingAccount account = new SavingAccount(
                 2_000,
-                10_000,
                 1_000,
+                10_000,
                 5
         );
 
-        Assertions.assertEquals(IllegalArgumentException.class, account.minBalance);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            account.getRate();
+        });
+
     }
 
     @Test
-    public void shouldNotSetNegativeMinBalance() {//минимальный баланс не может быть отрицательным
+    public void shouldThrowExceptionNegativeMinBalance() {//минимальный баланс не может быть отрицательным
         SavingAccount account = new SavingAccount(
                 2_000,
                 -1_000,
@@ -56,7 +58,9 @@ public class SavingAccountTest {
                 5
         );
 
-        Assertions.assertEquals(IllegalArgumentException.class, account.minBalance);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            account.getRate();
+        });
     }
 
     @Test
@@ -69,11 +73,11 @@ public class SavingAccountTest {
         );
         account.pay(1000);
 
-        Assertions.assertEquals(1000,account.getBalance() );
+        Assertions.assertEquals(1000, account.getBalance());
     }
 
     @Test
-    public void shouldNotPayIfBalanceNegative(){//оплата не должна проходить, если баланс становится отрицательным
+    public void shouldNotPayIfBalanceNegative() {//оплата не должна проходить, если баланс становится отрицательным
 
         SavingAccount account = new SavingAccount(
                 2_000,
@@ -83,9 +87,10 @@ public class SavingAccountTest {
         );
 
 
-        account.pay(2001);
+        account.pay(2_001);
 
-        Assertions.assertEquals(false, account.getBalance());
+        Assertions.assertEquals(2_000, account.getBalance());
+
     }
 
     @Test
