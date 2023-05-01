@@ -25,9 +25,9 @@ public class CreditAccountTest {
                 15
         );
 
-        account.add(3000);
+        account.add(1000);
 
-        Assertions.assertEquals(3000, account.getBalance());
+        Assertions.assertEquals(1000, account.getBalance());
     }
     @Test
     public void shouldAddIfBalanceNegative() {
@@ -64,12 +64,12 @@ public class CreditAccountTest {
     @Test
     public void shouldPayIfOverCreditLimit() {
         CreditAccount account = new CreditAccount(
-                0,
+                1000,
                 5000,
                 15
         );
-        account.pay(6000);
-        Assertions.assertEquals(0, account.getBalance());
+        account.pay(8000);
+        Assertions.assertEquals(1000, account.getBalance());
     }
     @Test
     public void shouldPayIfEqualCreditLimit() {
@@ -88,6 +88,7 @@ public class CreditAccountTest {
                 5000,
                 -23
         );
+
         Assertions.assertThrows(IllegalArgumentException.class,() -> account.getRate());
     }
     @Test
