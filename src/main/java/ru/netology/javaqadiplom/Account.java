@@ -3,10 +3,10 @@ package ru.netology.javaqadiplom;
 public class Account {
     protected int balance;
     protected int rate;
-   // public Account(int balance, int rate) {
-       // this.balance = balance;
-       // this.rate = rate;
-   // }
+    // public Account(int balance, int rate) {
+    // this.balance = balance;
+    // this.rate = rate;
+    // }
 
     public boolean pay(int amount) {
         return false;

@@ -62,7 +62,7 @@ public class SavingAccountTest {
         );
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-          account.add(3000);
+            account.add(3000);
         });
     }
 
@@ -111,9 +111,10 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(30, account.yearChange());
     }
+
     @Test
     public void shouldNotAddPercentIfIncorrectParams() {
-                       SavingAccount account = new SavingAccount(
+        SavingAccount account = new SavingAccount(
                 20_000,
                 1_000,
                 10_000,
@@ -122,6 +123,7 @@ public class SavingAccountTest {
         );
         Assertions.assertEquals(0, account.yearChange());
     }
+
     @Test
     public void shouldThrowExceptionIfRateNegative() {
         SavingAccount account = new SavingAccount(
