@@ -1,7 +1,10 @@
 package ru.netology.javaqadiplom;
 
-import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CreditAccountTest {
 
@@ -15,7 +18,7 @@ public class CreditAccountTest {
 
         account.add(3000);
 
-        Assertions.assertEquals(4000, account.getBalance());
+        assertEquals(4000, account.getBalance());
     }
 
     @Test
@@ -28,7 +31,7 @@ public class CreditAccountTest {
 
         account.add(1000);
 
-        Assertions.assertEquals(1000, account.getBalance());
+        assertEquals(1000, account.getBalance());
     }
 
     @Test
@@ -41,7 +44,7 @@ public class CreditAccountTest {
 
         account.add(3000);
 
-        Assertions.assertEquals(2000, account.getBalance());
+        assertEquals(2000, account.getBalance());
     }
 
     @Test
@@ -52,7 +55,7 @@ public class CreditAccountTest {
                 15
         );
         account.pay(1000);
-        Assertions.assertEquals(4000, account.getBalance());
+        assertEquals(4000, account.getBalance());
     }
 
     @Test
@@ -63,7 +66,7 @@ public class CreditAccountTest {
                 15
         );
         account.pay(1000);
-        Assertions.assertEquals(-1000, account.getBalance());
+        assertEquals(-1000, account.getBalance());
     }
 
     @Test
@@ -74,7 +77,7 @@ public class CreditAccountTest {
                 15
         );
         account.pay(8000);
-        Assertions.assertEquals(1000, account.getBalance());
+        assertEquals(1000, account.getBalance());
     }
 
     @Test
@@ -85,19 +88,20 @@ public class CreditAccountTest {
                 15
         );
         account.pay(6000);
-        Assertions.assertEquals(-5000, account.getBalance());
+        assertEquals(-5000, account.getBalance());
     }
 
     @Test
     public void shouldThrowException() {
-        CreditAccount account = new CreditAccount(
-                -5000,
-                5000,
-                -23
-        );
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> account.getRate());
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> {
+                    new CreditAccount(5000, 5000, -23);
+                });
+        assertEquals("Накопительная ставка не может быть отрицательной, а у вас: -23", exception.getMessage());
     }
+
 
     @Test
     public void shouldCalculateYearChange() {
@@ -105,7 +109,7 @@ public class CreditAccountTest {
                 5000,
                 15
         );
-        Assertions.assertEquals(-30, account.yearChange());
+        assertEquals(-30, account.yearChange());
     }
 
     @Test
@@ -114,7 +118,7 @@ public class CreditAccountTest {
                 5000,
                 15
         );
-        Assertions.assertEquals(0, account.yearChange());
+        assertEquals(0, account.yearChange());
     }
 
     @Test
@@ -123,6 +127,6 @@ public class CreditAccountTest {
                 5000,
                 15
         );
-        Assertions.assertEquals(0, account.yearChange());
+        assertEquals(0, account.yearChange());
     }
 }
