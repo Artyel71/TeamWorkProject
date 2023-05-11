@@ -97,9 +97,9 @@ public class CreditAccountTest {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> {
-                    new CreditAccount(5000, 5000, -23);
+                    new CreditAccount(5000, 5000, -13);
                 });
-        assertEquals("Накопительная ставка не может быть отрицательной, а у вас: -23", exception.getMessage());
+        assertEquals("Накопительная ставка не может быть отрицательной, а у вас: -13", exception.getMessage());
     }
 
 

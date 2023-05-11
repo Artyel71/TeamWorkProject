@@ -103,15 +103,15 @@ public class SavingAccountTest {
     @Test
     public void shouldAddPercent() {//добавление процента
         SavingAccount account = new SavingAccount(
-                2_00,
-                1_00,
+                99,
+                1,
                 10_000,
                 15
 
         );
 
 
-        Assertions.assertEquals(30, account.yearChange());
+        Assertions.assertEquals(14, account.yearChange());
     }
 
     @Test

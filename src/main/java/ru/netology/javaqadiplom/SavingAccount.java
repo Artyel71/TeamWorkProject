@@ -117,7 +117,7 @@ public class SavingAccount extends Account {
         if (balance > getMinBalance()) {
             if (balance < getMaxBalance()) {
 
-                return balance / 100 * getRate();
+                return balance * getRate() / 100;
             }
 
         }
